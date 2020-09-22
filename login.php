@@ -1,6 +1,22 @@
 <?php
+
+require_once("includes/classes/FormSanitizer.php");
+require_once("includes/classes/Account.php");
+require_once("includes/classes/Constants.php");
+require_once("includes/config.php");
+
+$account = new Account($con);
+
     if(isset($_POST["submitButton"])) {
-        echo "Form was submitted";
+       
+        $username = FormSanitizer::sanitizeFormUsername($_POST["username"]);
+        $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
+
+        $success = $account->login($username,$password);
+
+        if($success){
+            header("Location: index.php");
+        }
     }
 ?>
 
@@ -22,8 +38,8 @@
             </div>
 
             <form method="POST">
-
-                <input type="text" name="userName" placeholder="User name" required>
+                <?php echo $account->getError(Constants::$loginFailed); ?>
+                <input type="text" name="username" placeholder="User name" required>
 
                 <input type="password" name="password" placeholder="Password" required>
                 
