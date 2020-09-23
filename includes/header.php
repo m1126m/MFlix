@@ -1,8 +1,14 @@
 <?php
 require_once("includes/config.php");
 require_once("includes/classes/PreviewProvider.php");
-require_once("includes/classes/Entity.php");
 require_once("includes/classes/CategoryContainers.php");
+require_once("includes/classes/Entity.php");
+require_once("includes/classes/EntityProvider.php");
+require_once("includes/classes/ErrorMessage.php");
+require_once("includes/classes/SeasonProvider.php");
+require_once("includes/classes/Season.php");
+require_once("includes/classes/Video.php");
+require_once("includes/classes/VideoProvider.php");
 
 if(!isset($_SESSION["userLoggedIn"])) {
     header("Location: register.php");
@@ -13,7 +19,7 @@ $userLoggedIn = $_SESSION["userLoggedIn"];
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome to Netflix</title>
+        <title>Welcome to Mflix</title>
         <link rel="stylesheet" type="text/css" href="assets/style/style.css" />
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -22,5 +28,3 @@ $userLoggedIn = $_SESSION["userLoggedIn"];
     </head>
     <body>
         <div class='wrapper'>
-   
-    
